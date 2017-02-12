@@ -1,0 +1,53 @@
+<div class="row" style="margin-top: 30px;">
+  <div class="col-4">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" 
+          type="button" 
+          *ngIf="page > 1" 
+          (click)="goToPreviousPage()">
+          &laquo;
+        </button>
+      </span>
+      <input type="text" readonly disabled class="form-control" placeholder="Page {{page | number}} of {{pages | number}}">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" 
+          type="button"
+          *ngIf="page < pages" 
+          (click)="goToNextPage()">
+          &raquo;
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-secondary" 
+      type="button"
+      (click)="toggleMock()">
+      <span *ngIf="mock">Real</span><span *ngIf="!mock">Mock</span> Data
+    </button>
+  </div>
+</div>
+<div class="row" style="margin-top: 15px;">
+  <div *ngFor="let film of films" class="col-md-4" style="margin-top: 15px; margin-bottom: 15px;">
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">{{film.title}}</h4>
+        <button *ngIf="!film.expanded" (click)="film.expanded=!film.expanded" class="btn btn-primary btn-block">
+          View
+        </button>
+        <div *ngIf="film.expanded">
+          <p>{{film.opening_crawl}}</p>
+          <button (click)="film.expanded=!film.expanded" class="btn btn-primary btn-block">
+          Hide
+        </button>
+        </div>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Director: {{film.director}}</li>
+        <li class="list-group-item">Producer: {{film.producer}}</li>
+        <li class="list-group-item">Release Date: {{film.release_date}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

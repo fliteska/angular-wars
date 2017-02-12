@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-12">
+    <div class="jumbotron" style="margin-top: 30px;">
+      <h1 class="display-3">{{title}}</h1>
+      <p class="lead">{{jumbotronText}}</p>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-4">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" 
+          type="button" 
+          *ngIf="page > 1" 
+          (click)="goToPreviousPage()">
+          &laquo;
+        </button>
+      </span>
+      <input type="text" readonly disabled class="form-control" placeholder="Page {{page | number}} of {{pages | number}}">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary" 
+          type="button"
+          *ngIf="page < pages" 
+          (click)="goToNextPage()">
+          &raquo;
+        </button>
+      </span>
+    </div>
+  </div>
+  <div class="col-2">
+    <button class="btn btn-secondary" 
+      type="button"
+      (click)="toggleMock()">
+      <span *ngIf="mock">Real</span><span *ngIf="!mock">Mock</span> Data
+    </button>
+  </div>
+</div>
+<div class="row" style="margin-top: 15px;">
+  <div *ngFor="let ship of ships" class="col-md-4" style="margin-top: 15px; margin-bottom: 15px;">
+    <div class="card">
+      <div class="card-block">
+        <h4 class="card-title">{{ship.name}}</h4>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Model: {{ship.model}}</li>
+        <li class="list-group-item">Manufacturer: {{ship.manufacturer}}</li>
+        <li class="list-group-item">Class: {{ship.starship_class}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
